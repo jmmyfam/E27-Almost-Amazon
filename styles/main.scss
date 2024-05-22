@@ -84,8 +84,9 @@ body {
 }
 
 #view {
-  width: 90%;
+  width: 100%;
   margin: auto;
+  padding-left: 10px;
 
   .details {
     min-width: 50%;
@@ -95,4 +96,19 @@ body {
   .description {
     white-space: pre-wrap;
   }
+}
+
+#author-books {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.author-books {
+  width: 200px; 
+  margin: 10px; 
+}
+
+.author-books .card-img-top {
+  width: 100%;
+  height: auto;
 }
