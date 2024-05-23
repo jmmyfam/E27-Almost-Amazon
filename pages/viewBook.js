@@ -9,11 +9,11 @@ const viewBook = (obj) => {
    <div class="d-flex flex-column">
      <img src=${obj.image} alt=${obj.title} style="width: 300px;">
      <div class="mt-5">
-       <i id="edit-book-btn--${obj.firebaseKey}" class="fas fa-edit btn btn-info"></i>
-       <i id="delete-book--${obj.firebaseKey}" class="btn btn-danger fas fa-trash-alt"></i>
+       <i id="edit-book-btn--${obj.firebaseKey}" class="fas fa-edit btn btn-outline-warning data-tooltip" data-tooltip="Edit Book"></i>
+       <i id="delete-book--${obj.firebaseKey}" class="btn btn-outline-danger fas fa-trash-alt data-tooltip" data-tooltip="Delete Book"></i>
      </div>
    </div>
-   <div class="text-white ms-5 details" style="margin-top: 40px">
+   <div class="text-black ms-5 details" style="margin-top: 40px">
      <h5>${obj.title} by ${obj.authorObject.first_name} ${obj.authorObject.last_name} ${obj.authorObject.favorite ? '<span class="badge bg-danger"><i class="fa fa-heart" aria-hidden="true"></i></span>' : ''}</h5>
      Author Email: <a href="mailto:${obj.authorObject.email}">${obj.authorObject.email}</a><hr>
      <p>${obj.description || ''}</p>

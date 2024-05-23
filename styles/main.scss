@@ -2,12 +2,12 @@
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
 
 body {
-  background-color: black;
+  background-color: rgb(245, 245, 245);
 }
 
 .navbar-dark .navbar-brand {
   font-family: "Oregano", cursive !important;
-  color: red;
+  background-color: rgb(36, 36, 36);
   font-weight: 900;
   font-size: 2em;
 }
@@ -50,7 +50,7 @@ body {
     width: 60%;
     margin: auto;
     justify-content: center;
-    color: white;
+    color: rgb(0, 0, 0);
 
     #formModal {
       color: black;
@@ -66,13 +66,20 @@ body {
     justify-content: center;
 
     .card {
-      width: 300px;
+      width: 270px;
       margin: 5px;
+      background-color: transparent;
+      transition: transform 0.3s ease;
+    
 
       .sale-badge {
         font-size: 1em;
-        background-color: blue;
+        background-color: rgb(255, 0, 0);
       }
+    }
+
+    .card:hover {
+      transform: scale(1.02);
     }
 
     .table {
@@ -111,4 +118,43 @@ body {
 .author-books .card-img-top {
   width: 100%;
   height: auto;
+}
+
+.data-tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.data-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px 6px;
+  background-color: rgba(0, 0, 0, 0.678);
+  color: white;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+.data-tooltip:hover::after {
+  opacity: 1;
+}
+
+.nav-link {
+  color: white;
+}
+
+.fa fa-star {
+  color: gold;
+}
+
+.fav {
+  color: black;
 }
