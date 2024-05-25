@@ -1,6 +1,6 @@
 // api/mergedData.js
-import { getAuthorBooks, getSingleAuthor } from './authorData';
-import { getSingleBook } from './bookData';
+import { deleteSingleAuthor, getAuthorBooks, getSingleAuthor } from './authorData';
+import { deleteBook, getSingleBook } from './bookData';
 
 // TODO: Get data for viewBook
 const getBookDetails = (firebaseKey) => new Promise((resolve, reject) => {
@@ -22,4 +22,14 @@ const getAuthorDetails = (firebaseKey) => new Promise((resolve, reject) => {
     });
 });
 
-export { getBookDetails, getAuthorDetails };
+const deleteAuthorBooksRelationship = (firebaseKey) => new Promise((resolve, reject) => {
+  getAuthorBooks(firebaseKey).then((authorBooksArray) => {
+    const deleteBookPromises = authorBooksArray.map((book) => deleteBook(book.firebaseKey));
+
+    Promise.all(deleteBookPromises).then(() => {
+      deleteSingleAuthor(firebaseKey).then(resolve);
+    });
+  }).catch(reject);
+});
+
+export { getBookDetails, getAuthorDetails, deleteAuthorBooksRelationship };

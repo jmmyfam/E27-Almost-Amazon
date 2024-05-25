@@ -6,7 +6,7 @@ import { getBooks } from '../api/bookData';
 const viewAuthor = (firebaseKey) => {
   clearDom();
 
-  // TODO: Retrieve author details and display their books
+  // Retrieve author details and display their books
   getAuthorDetails(firebaseKey)
     .then(({ authorObject }) => {
       let domString = `
@@ -26,18 +26,22 @@ const viewAuthor = (firebaseKey) => {
           // filter books by author ID
           const authorBooks = books.filter((book) => book.author_id === firebaseKey);
 
-          // loop thru books and render
-          authorBooks.forEach((book) => {
-            domString += `
-              <div class="author-books-container">
-                <div class="author-books">
-                  <img class="card-img-top" src="${book.image}" alt="${book.title}">
-                  <div class="card-body">
-                    <h5 class="card-title" style="color: black">${book.title}</h5>
+          if (authorBooks.length === 0) {
+            domString += '<p>No books found</p>';
+          } else {
+            // loop thru books and render
+            authorBooks.forEach((book) => {
+              domString += `
+                <div class="author-books-container">
+                  <div class="author-books">
+                    <img class="card-img-top" src="${book.image}" alt="${book.title}">
+                    <div class="card-body">
+                      <h5 class="card-title" style="color: black">${book.title}</h5>
+                    </div>
                   </div>
-                </div>
-              </div>`;
-          });
+                </div>`;
+            });
+          }
 
           renderToDOM('#view', domString);
         });

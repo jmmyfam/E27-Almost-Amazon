@@ -13,9 +13,13 @@ const getBooks = () => new Promise((resolve, reject) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      // sort books alphabetically by title
-      const sortedBooks = Object.values(data).sort((a, b) => a.title.localeCompare(b.title));
-      resolve(sortedBooks);
+      if (data) {
+        // sort books alphabetically by title
+        const sortedBooks = Object.values(data).sort((a, b) => a.title.localeCompare(b.title));
+        resolve(sortedBooks);
+      } else {
+        resolve([]);
+      }
     })
     .catch(reject);
 });
