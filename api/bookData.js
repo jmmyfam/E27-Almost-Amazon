@@ -88,6 +88,14 @@ const booksOnSale = () => new Promise((resolve, reject) => {
 });
 
 // TODO: STRETCH...SEARCH BOOKS
+const searchBooks = (searchValue) => new Promise((resolve, reject) => {
+  getBooks()
+    .then((books) => {
+      const filteredBooks = books.filter((book) => book.title.toLowerCase().includes(searchValue.toLowerCase()));
+      resolve(filteredBooks);
+    })
+    .catch(reject);
+});
 
 export {
   getBooks,
@@ -95,5 +103,6 @@ export {
   booksOnSale,
   deleteBook,
   getSingleBook,
-  updateBook
+  updateBook,
+  searchBooks
 };
